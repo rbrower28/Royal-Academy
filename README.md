@@ -19,6 +19,24 @@ Join us on our journey to educate the world with code!
 * JavaScript
 * HTML & CSS
 
+## Instructions:
+
+Inside your environment, run this terminal command
+to start a local development server:
+
+* **python3 manage.py runserver** for MacOS
+* **python manage.py runserver** for Windows
+
+The development page will be found at this
+address in your browser:
+
+http://localhost:8000
+
+Your changes to the code files will update when
+you refresh the page on your browser.
+
+Have fun!
+
 ## Further Resources:
 
 * [Django 4.0 Documentation](https://docs.djangoproject.com/en/4.0/)
