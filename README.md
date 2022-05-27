@@ -35,7 +35,7 @@ http://localhost:8000
 Your changes to the code files will update when
 you refresh the page on your browser.
 
-Have fun!
+Have fun! yes! Thanks for this!
 
 ## Further Resources:
 
