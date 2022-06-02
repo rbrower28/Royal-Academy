@@ -8,7 +8,7 @@ Join us on our journey to educate the world with code!
 ## Our Collaborators:
 
 * Chettra Ly
-* Matthieu Steele
+* Mathieu Steele
 * Daniel De La Pena Maldonado 
 * Joseph Devincenzi
 * Ryan Brower
