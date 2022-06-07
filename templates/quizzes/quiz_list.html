@@ -1,0 +1,11 @@
+<h1>Quizzes</h1>
+<ul>
+  {% for quiz in object_list %}
+  <li>
+    {{ quiz.name }} (created {{ quiz.timestamp|date }})
+    <a href="{% url 'quizzes:take_quiz' quiz.id %}">Take Quiz</a>
+  </li>
+  {% empty %}
+  <li>No quizzes yet.</li>
+  {% endfor %}
+</ul>

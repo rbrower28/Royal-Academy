@@ -1,4 +1,7 @@
 .env
+__pycache__
+*.pyc
+*.sqlite3
 /Lib
 /Scripts
 pyvenv.cfg
