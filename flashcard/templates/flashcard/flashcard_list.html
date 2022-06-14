@@ -1,0 +1,15 @@
+<h1>Flashcards</h1>
+<ul>
+  {% for flashcard in object_list %}
+  <li>
+    {{ flashcard.subject }}
+
+    {% comment %}
+    <a href="{% url 'quizzes:take_quiz' quiz.id %}">Take Quiz</a>
+    {% endcomment %}
+    
+  </li>
+  {% empty %}
+  <li>No flashcards yet.</li>
+  {% endfor %}
+</ul>

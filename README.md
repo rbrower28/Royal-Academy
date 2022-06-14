@@ -67,3 +67,9 @@ python manage.py makemigrations
 python manage.py migrate
 
 * admin page wont work if you dont set up db
+
+# Common Errors: 
+
+* Model not showing in admin
+
+If after running makemigrations and migrate the new model is not showing, check that you registered your model in the admin page of your application. 
