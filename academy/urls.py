@@ -19,6 +19,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls), # /admin/
     path('', include('home.urls')), # /
-    path('quizzes/', include('quizzes.urls')) # /quizzes/
+    path('quizzes/', include('quizzes.urls')), # /quizzes/
+    path('flashcards/', include('flashcard.urls')), # /flashcards/
     # other modules go here
 ]
