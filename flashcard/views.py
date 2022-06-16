@@ -6,13 +6,16 @@ from django.views.generic.list import ListView
 
 # Create your views here.
 
-from .models import Flashcard
+from .models import Flashcard, Deck, Subject
 
 class FlashcardListView(ListView):
 
     model = Flashcard
 
 def play_flashcards(request, subject):
-    pass
+    Deck = get_object_or_404(Deck, subject=subject)
+    
+    template = get_template("flashcard/flashcard_game.html")
+    return HttpResponse(template.render({"deck": Deck}, request))
 
 
