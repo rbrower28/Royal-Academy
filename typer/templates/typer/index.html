@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
 {% block title %}
   Test your typing skills!
 {% endblock %}
@@ -11,21 +12,23 @@
 <link rel="stylesheet" href="{% static 'home/includes/header.css' %}">
 {% endblock %}
 
+
 {% block content %}
+  {% include "home/includes/header.html" %}
 
-{% include "home/includes/header.html" %}
+  <main>
+    <h1>Put your typing skills to the test.</h1>
+    <a href="{% url 'test-start' %}" id="start-btn">Start</a>
+    <h3>High Scores:</h3>
+    <ol class="high-scores">
+      <li>Ryan: 1,000,000 wpm</li>
+      <li>Tim: 8 wpm</li>
+      <li>Oliver: 17 wpm</li>
+      <li>James: 9 wpm</li>
+    </ol>
+  </main>
 
-<main>
-  <h1>Put your typing skills to the test.</h1>
-  <a href="#" id="start-btn">Start</a>
-  <h3>High Scores:</h3>
-  <ol class="high-scores">
-    <li>Ryan: 1,000,000 wpm</li>
-    <li>Tim: 8 wpm</li>
-    <li>Oliver: 17 wpm</li>
-  </ol>
-</main>
+  {% include "home/includes/footer.html" %}
 
-{% include "home/includes/footer.html" %}
-
+  <script src="{% static 'typer/scripts/testHome.js' %}"></script>
 {% endblock %}
