@@ -12,10 +12,20 @@ class FlashcardListView(ListView):
 
     model = Flashcard
 
-def play_flashcards(request, subject):
-    Deck = get_object_or_404(Deck, subject=subject)
-    
+def flashcards_menu(request):
+
+    decks = Deck.objects.all()
+
+    template = get_template("flashcard/flashcards_menu.html")
+    return HttpResponse(template.render({"decks": decks}, request))
+
+def play_flashcards(request, id): #Also add subject as second argument
+    #Deck = get_object_or_404(Deck, id=id)
+    #Deck.objects.all()
+    deck = get_object_or_404(Deck, id=id)
+    flashcards = deck.flashcards.all()
+   
     template = get_template("flashcard/flashcard_game.html")
-    return HttpResponse(template.render({"deck": Deck}, request))
+    return HttpResponse(template.render({"deck": deck, "flashcards": flashcards}, request))
 
 
