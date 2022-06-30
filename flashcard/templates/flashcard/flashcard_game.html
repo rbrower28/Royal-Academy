@@ -1,1 +1,38 @@
-<h1>Deck {{ deck. }}</h1>
+{% extends 'base.html' %} 
+
+{% block content %}
+
+{% comment %} {% load static %} 
+<link rel="stylesheet" href="{% static 'flashcard_app.js' %}"> {% endcomment %}
+{% comment %} <style>
+    .front{
+        background-color: red;
+    }
+    .backtwo{
+        display:none;
+    }
+
+</style> {% endcomment %}
+<h1>{{ deck.name }}</h1>
+<ul>
+  {% for flashcard in flashcards %}
+  <li>
+      <h2>{{ flashcard.subject }}</h2>
+      <p class="front">{{ flashcard.front_content }}</p>
+      <button onclick="showAnswer()">Show Answer</button>
+      
+      <p class="back">{{ flashcard.back_content }}</p>
+  </li>
+
+  {% endfor %}
+</ul>
+<script>
+
+    {% comment %} function showAnswer(){
+        var element = document.getElementsByClassName("back")
+        element.classList.toggle("backtwo");
+    } {% endcomment %}
+
+</script>
+{% endblock %}
+

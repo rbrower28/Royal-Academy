@@ -1,0 +1,23 @@
+{% extends 'base.html' %} 
+{% block content %}
+<section>
+    <h2>Choose a deck and start practicing!</h2>
+    <ul>
+        {% comment %} List of decks here. {% endcomment %}
+        {% for deck in decks %}
+        <li><a href={% url 'flashcards:play_flashcards' deck.id %}>{{ deck.name }}</a></li>
+        {% endfor %}
+    </ul>
+</section>
+<section>
+    <a href="/">Create a new deck</a>
+</section>
+<section>
+    <h2>Flashcards</h2>
+    <ul>
+        <li><a href="/">Add new cards</a></li>
+        <li><a href="/">Delete cards</a></li>
+        <li><a href="/">Add a new subject</a></li>
+    </ul>
+</section>
+{% endblock %}
