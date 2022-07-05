@@ -73,3 +73,11 @@ python manage.py migrate
 * Model not showing in admin
 
 If after running makemigrations and migrate the new model is not showing, check that you registered your model in the admin page of your application. 
+
+# Page Style
+
+[Color Palette](https://coolors.co/ee6352-08b2e3-efe9f4-57a773-484d6d)
+**Primary** #EE6352 - *This can be used for the color of the headers and footers. The other colors can be used as you see fit.*
+
+
+[Font](https://fonts.google.com/specimen/Montserrat)
