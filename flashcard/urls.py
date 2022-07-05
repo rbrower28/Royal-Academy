@@ -8,4 +8,5 @@ urlpatterns = [
     path("", views.FlashcardListView.as_view(), name="flashcard-list"),
     path("flashcard-menu", views.flashcards_menu, name="flashcard-menu"),
     path("play/<str:id>", views.play_flashcards, name="play_flashcards"),
+    path("new-deck", views.create_deck, name="create_deck")
 ]

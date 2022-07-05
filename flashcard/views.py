@@ -28,4 +28,8 @@ def play_flashcards(request, id): #Also add subject as second argument
     template = get_template("flashcard/flashcard_game.html")
     return HttpResponse(template.render({"deck": deck, "flashcards": flashcards}, request))
 
-
+def create_deck(request):
+    
+    template = get_template("flashcard/add_deck.html")
+    return HttpResponse(template.render({}, request))
+    
