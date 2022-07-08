@@ -19,7 +19,8 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls), # /admin/
     path('', include('home.urls')), # /
+    path('flashcards/', include('flashcard.urls')), # /flashcards/
+    path('mathbubbles/', include('mathbubbles.urls')), # /mathbubbles/
     path('quizzes/', include('quizzes.urls')), # /quizzes/
-    path('typer/', include('typer.urls')) # /typer/
-    # other modules go here
+    path('typer/', include('typer.urls')), # /typer/
 ]

@@ -1,0 +1,63 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Quiz Results</h1>
+
+<p>Here are the results of your answers on the quiz: (<strong>{{ attempt.quiz.name }}</strong>) recorded {{ attempt.timestamp }}</p>
+
+<ul style="list-style-type: none;">
+{% for question in attempt.quiz.question_set.all %}
+
+<li>
+  <h2>{{ question.title }}</h2>
+
+  <ul style="list-style-type: none;">
+    {% for option in question.questionoption_set.all %}
+    <li>
+      <input
+        type="radio"
+        id="{{ option.id }}"
+        name="{{ question.id }}"
+        value="{{ option.id }}"
+        disabled="disabled"
+        {% for answer in attempt.questionattempt_set.all %}
+        {% if answer.question.id == question.id and answer.user_response == option %}
+        checked="checked"
+        {% else %}
+        {% endif %}
+        {% endfor %}
+      />
+      <label for="{{option.id}}">
+        {% if option.correct %}
+        <strong style="color: green;">
+          {% endif %}
+
+          {{ option.title }}
+
+          {% for answer in attempt.questionattempt_set.all %}
+          {% if answer.question.id == question.id and answer.user_response == option %}
+            {% if answer.user_response.correct %}
+              <strong style="color: green;">(correct)</strong>
+            {% else %}
+              <strong style="color: red;">(incorrect)</strong>
+            {% endif %}
+          {% endif %}
+          {% endfor %}
+          
+          {% if option.correct %}
+        </strong>
+        {% endif %}
+      </label>
+    </li>
+
+    {% endfor %}
+  </ul>
+</li>
+{% endfor %}
+</ul>
+
+<p>
+  Click <a href="{% url 'quizzes:take_quiz' attempt.quiz.id %}">here</a> to try
+  again.
+</p>
+
+{% endblock %}

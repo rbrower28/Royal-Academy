@@ -1,15 +1,15 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Quizzes</h1>
+<h1>Flashcards</h1>
 <ul>
-  {% for quiz in object_list %}
+  {% for flashcard in object_list %}
   <li>
-    {{ quiz.name }} (created {{ quiz.timestamp|date }})
+    {{ flashcard.subject }} {% comment %}
     <a href="{% url 'quizzes:take_quiz' quiz.id %}">Take Quiz</a>
+    {% endcomment %}
   </li>
   {% empty %}
-  <li>No quizzes yet.</li>
-  
+  <li>No flashcards yet.</li>
   {% endfor %}
 </ul>
 

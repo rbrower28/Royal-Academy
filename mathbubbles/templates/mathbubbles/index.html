@@ -1,0 +1,349 @@
+{% extends 'base.html' %} 
+
+{% block title %}Math Game{% endblock %}
+
+{% block css_files %}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@700&display=swap');
+
+#container {
+    display: grid;
+    grid-template-columns: repeat(3, 172px);
+    grid-template-rows: repeat(4, 1fr);
+    Height: 516px;
+	width: 516px;
+	background-color: #9DD2EA;
+    position: relative;
+    justify-items: center;
+}
+
+#title {
+    grid-column: 2;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Balsamiq Sans', 'cursive';
+    font-size: 75px; /* title screen keep at 75px and 30px for game running */
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 4px;
+    -webkit-text-stroke-color: rgb(13, 103, 206);
+
+}
+
+
+#startButton {
+    display: block;
+    left: 50%;    
+    height: 40px;
+    grid-row: 4;
+    grid-column: 2;
+
+}
+
+#scoreZone {
+    grid-row: 1;
+    grid-column: 1;
+}
+
+
+
+#answerInput {
+    display: none;
+    grid-row: 4;
+    grid-column: 2;
+    height: 20%;
+    width: 60%;
+    justify-content: center;;
+    z-index: 3;
+
+}
+
+#answerSubmit {
+    display: none;
+    grid-row: 4;
+    grid-column: 2;
+    height: 70%;
+    padding: 40px;
+    z-index: 2;
+    background: transparent;
+    border: 1px solid #4c749b;
+    outline: none;
+}
+
+#answerSubmit:hover {
+    background: #2c70af;
+}
+
+
+#equationSpace01 {
+    display: block;
+    text-align: center;
+    padding: 40px 0;
+    color: rgb(24, 10, 87);
+    font-weight: bold;
+}
+
+#equationSpace02 {
+    display: block;
+    text-align: center;
+    padding: 40px 0;
+    color: rgb(24, 10, 87);
+    font-weight: bold;
+}
+
+#equationSpace03 {
+    display: block;
+    text-align: center;
+    padding: 40px 0;
+    color: rgb(24, 10, 87);
+    font-weight: bold;
+}
+
+#questionSpace01 {
+    display: none;
+    grid-row: 2;
+    grid-column: 1;
+
+}
+    
+
+#questionSpace02 {
+    display: none;
+    grid-row: 3;
+    grid-column: 2;
+    
+}
+
+#questionSpace03 {
+    display: none;
+    grid-row: 2;
+    grid-column: 3;
+}
+
+.bubble {
+    -webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	
+    -webkit-box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2), inset 0px 10px 30px 5px rgba(255, 255, 255, 1);
+	-moz-box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2), inset 0px 10px 30px 5px rgba(255, 255, 255, 1);
+	box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2), inset 0px 10px 30px 5px rgba(255, 255, 255, 1);
+	
+    height: 100px;
+	width: 100px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div id="container" style="margin: 0 auto; text-align: center;">
+    
+    <h1 id="title">Math Bubbles</h1>
+
+    <!-- <p>Welcome {{ user }} </p> -->
+
+    <button id="startButton" onclick="initial()">Start!</button>
+    
+    <!--Questions appear in 4 areas of the container-->
+    
+    
+    <div id="questionSpace01"  class="bubble"><div id="equationSpace01"></div></div>
+    <div id="questionSpace02"  class="bubble"><div id="equationSpace02"></div></div>
+    <div id="questionSpace03"  class="bubble"><div id="equationSpace03"></div></div>
+    
+
+    <input id="answerInput" type="number" placeholder="enter answer">
+
+    <button id="answerSubmit" onclick="start()">Submit!</button>
+    <div id="scoreZone"></div>
+    <div id="lifeZone"></div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+// number of chances 
+var lives = 3;
+
+// score tracker
+var score = 0;
+
+// operators for creating equations
+const operators = ["add", "subtract", "divide", "multiply"];
+
+// spaces to appear
+const spaces = ["1", "2", "3"];
+
+// numbers for equations
+const numbers1 = [25, 45, 10, 80, 100];
+const numbers2 = [2, 5];
+
+// function to start the game
+function initial(){
+    // get numbers
+    //var num1 = numbers1[Math.floor(Math.random() * numbers1.length)]; 
+    //var num2 = numbers2[Math.floor(Math.random() * numbers2.length)];
+    // create and solve equation
+    answer = equation();
+    // write score, starting at 0
+    document.getElementById("scoreZone").innerHTML = `Score: ${score}`;
+    // displays the lives
+    document.getElementById("lifeZone").innerHTML = `Lives: ${lives}`;
+    // hides start button
+    let a = document.getElementById("startButton");
+    a.style.display = "none";
+    // makes the answer input appear
+    let b = document.getElementById("answerInput");
+    b.style.display = "block";
+    // make the submit button appear
+    let c = document.getElementById("answerSubmit");
+    c.style.display = "block";
+    // make the question area appear
+   // let d = document.getElementById("questionArea");
+  //  d.style.display = "block"; 
+    // make title letters smaller
+    let e = document.getElementById("title");
+    e.style.fontSize = "35px"
+    
+};
+
+// function for generating a random equation
+function equation() {
+    a = numbers1[Math.floor(Math.random() * numbers1.length)]; 
+    b = numbers2[Math.floor(Math.random() * numbers2.length)];
+    var rOperator = operators[Math.floor(Math.random() * operators.length)]; 
+    var rSpace = spaces[Math.floor(Math.random() * operators.length)];
+    var operator = '';
+    
+    switch(rOperator) {
+        
+        case "add":
+        result = a + b;
+        operator = "+";
+        break
+
+        case "subtract":
+        result = a - b;
+        operator = "-";
+        break
+
+        case "divide":
+        result = a / b;
+        operator = "/";
+        break
+
+        case "multiply":
+        result = a * b;
+        operator = "*";
+        break
+
+    };
+
+    switch(rSpace) {
+
+        case "1":
+        space = document.getElementById("questionSpace01");
+        equationSpace = document.getElementById("equationSpace01");
+        break
+
+        case "2":
+        space = document.getElementById("questionSpace02");
+        equationSpace = document.getElementById("equationSpace02");
+        break
+
+        case "3":
+        space = document.getElementById("questionSpace03");
+        equationSpace = document.getElementById("equationSpace03");
+        break
+    }
+    
+    space.style.display = "block";
+    equationSpace.innerHTML = `${a} ${operator} ${b}`;
+    console.log(result)
+    return result
+};
+
+function checkAnswer(a, u) {
+    if (a == u) {
+        alert("Good job +1 point!")
+        addPoints();
+
+    } 
+    
+    else {
+        alert("Incorrect, you have lost a life.")
+        lives -= 1; // lose a life if answer is wrong.
+        document.getElementById("lifeZone").innerHTML = `Lives: ${lives}`;
+    }
+
+};
+
+function addPoints() {
+    score++; // adds points to the score
+    document.getElementById("scoreZone").innerHTML = `Score: ${score}`; // updates score on screen
+};
+
+function checkLife(){
+    if (lives === 0){
+        alert(`Game Over! Your score was ${score}`) // turn this into a modal and then add a button to restart or go to the main menue. 
+        restart();
+    }  
+};
+
+
+// start of program
+function start(){
+    // checks answer to equation
+    checkAnswer(answer, userAnswer = document.getElementById("answerInput").value)
+     // sets all bubbles to display: none
+     var x = document.getElementById("questionSpace01");
+     x.style.display = "none";
+     var y = document.getElementById("questionSpace02");
+     y.style.display = "none";
+     var z = document.getElementById("questionSpace03");
+     z.style.display = "none";
+ 
+    // initiates a new round
+    // create and solve equation
+    answer = equation();
+    // write score, starting at 0
+    document.getElementById("scoreZone").innerHTML = `Score: ${score}`;
+    document.getElementById("answerInput").value = "";
+    // check if continue playing
+    checkLife()
+   
+};
+
+function restart() {
+    // erase score, starting at 0
+    document.getElementById("scoreZone").innerHTML = ``;
+    score = 0;
+    // remove the lives
+    document.getElementById("lifeZone").innerHTML = ``;
+    lives = 3;
+    // shows start button
+     let a = document.getElementById("startButton");
+     a.style.display = "block";
+     // makes the answer input disappear
+     let b = document.getElementById("answerInput");
+     b.style.display = "none";
+     // make the submit button disappear
+     let c = document.getElementById("answerSubmit");
+     c.style.display = "none";
+     // make title letters bigger
+    let e = document.getElementById("title");
+    e.style.fontSize = "75px"
+
+    // sets all bubbles to display: none
+    var x = document.getElementById("questionSpace01");
+    x.style.display = "none";
+    var y = document.getElementById("questionSpace02");
+    y.style.display = "none";
+    var z = document.getElementById("questionSpace03");
+    z.style.display = "none";
+
+}
+</script>
+{% endblock %}

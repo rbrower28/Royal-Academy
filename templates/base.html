@@ -14,8 +14,25 @@
 </head>
 
 <body>
+  {% block nav %}
+  <nav>
+    <ul>
+      <li>
+        <a href="/">Home</a>
+        <a href="/flashcards">Flash Cards</a>
+        <a href="/mathbubbles">Math Bubbles</a>
+        <a href="/quizzes">Quizzes</a>
+      </li>
+    </ul>
+  </nav>
+  {% endblock %}
   {% block content %}
   {% endblock %}
+
+  <footer>
+    {% block scripts %}
+    {% endblock %}
+  </footer>
 </body>
 
 </html>
