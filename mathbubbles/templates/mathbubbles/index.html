@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html>
-<body>
-<head>
-    <title>Math Game</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@700&display=swap');
+{% extends 'base.html' %} 
+
+{% block title %}Math Game{% endblock %}
+
+{% block css_files %}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@700&display=swap');
 
 #container {
     display: grid;
@@ -131,9 +131,11 @@
     height: 100px;
 	width: 100px;
 }
+</style>
+{% endblock %}
 
-    </style>
-</head>
+{% block content %}
+
 <div id="container" style="margin: 0 auto; text-align: center;">
     
     <h1 id="title">Math Bubbles</h1>
@@ -158,9 +160,11 @@
 
 </div>
 
-<footer>
-    <script type="text/javascript">
-        // number of chances 
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+// number of chances 
 var lives = 3;
 
 // score tracker
@@ -341,9 +345,5 @@ function restart() {
     z.style.display = "none";
 
 }
-    </script>
-</footer>
-
-</body>
-
-</html>
+</script>
+{% endblock %}
