@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+  Typing Test - In Progress
+{% endblock %}
+
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static 'typer/test.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="gameboard">
+    <header>
+    <a href="{% url 'test-home' %}">quit</a>
+    </header>
+
+    <main>
+      <h3 class="title">Quick! Type the words as fast as you can!</h3>
+      <div class="words-box"></div>
+      <textarea placeholder="Type here..." oninput="onTextInput()"></textarea>
+      <section class="scores">
+        <p class="time">Time:<br><span class="output-time blue">60</span>s</p>
+        <p class="errors">Errors:<br><span class="output-errors red">0</span></p>
+        <p class="acc">Accuracy:<br><span class="output-acc green">100</span>%</p>
+      </section>
+      <h3 class="wpm">Your wpm: <span class="output-wpm">17</span></h3>
+    </main>
+
+    <footer>
+      &copy 2022 Royal Academy
+    </footer>
+  </div>
+
+  <script src="{% static 'typer/scripts/testScreen.js' %}"></script>
+{% endblock %}
