@@ -9,14 +9,14 @@
     </ul>
 </section>
 <section>
-    <a href="/">Create a new deck</a>
+    <a href={% url 'flashcards:create_deck' %}>Create a new deck</a>
 </section>
 <section>
     <h2>Flashcards</h2>
     <ul>
-        <li><a href="/">Add new cards</a></li>
-        <li><a href="/">Delete cards</a></li>
-        <li><a href="/">Add a new subject</a></li>
+        <li><a href={% url 'flashcards:create_flashcard'%}>Add new cards</a></li>
+        <li><a href={% url 'flashcards:delete_flashcard' %}>Delete cards</a></li>
+        <li><a href={% url 'flashcards:create_subject' %}>Add a new subject</a></li>
     </ul>
 </section>
 {% endblock %}
