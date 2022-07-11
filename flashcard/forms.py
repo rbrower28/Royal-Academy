@@ -8,7 +8,7 @@ class NewDeckForm(ModelForm):
 
     name = forms.TextInput()
     flashcards = forms.ModelMultipleChoiceField(
-        widget = forms.CheckboxSelectMultiple(), queryset=Flashcard.objects.all())
+        widget=forms.CheckboxSelectMultiple(), queryset=Flashcard.objects.all())
 
     class Meta():
         model = Deck
@@ -20,7 +20,25 @@ class AddCard(ModelForm):
         widget=forms.Select(), queryset=Subject.objects.all())
     front_content = forms.TextInput()
     back_content = forms.TextInput()
-    
+
     class Meta():
         model = Flashcard
         fields = ["subject", "front_content", "back_content"]
+
+
+class AddSubject(ModelForm):
+    name = forms.TextInput()
+
+    class Meta():
+        model = Subject
+        fields = ["name"]
+
+
+class DeleteFlashcard(ModelForm):
+
+    front_content = forms.ModelChoiceField(
+        widget=forms.Select(), queryset=Flashcard.objects.all())
+
+    class Meta():
+        model = Flashcard
+        fields = ["front_content"]

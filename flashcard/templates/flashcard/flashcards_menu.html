@@ -3,7 +3,6 @@
 <section>
     <h2>Choose a deck and start practicing!</h2>
     <ul>
-        {% comment %} List of decks here. {% endcomment %}
         {% for deck in decks %}
         <li><a href={% url 'flashcards:play_flashcards' deck.id %}>{{ deck.name }}</a></li>
         {% endfor %}
