@@ -29,7 +29,8 @@ class Flashcard(models.Model):
     id = models.UUIDField(primary_key=True,
                           default=uuid.uuid4,  # Generates unique id
                           editable=False)
-
+    
+    
     # models.do_nothing leaves the cards undeleted.
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
 
@@ -43,7 +44,7 @@ class Flashcard(models.Model):
         max_length=200, blank=False, null=False, default="")
 
     def __str__(self):
-        return str(self.subject)
+        return str(self.front_content)
 
 
 class Deck(models.Model):
