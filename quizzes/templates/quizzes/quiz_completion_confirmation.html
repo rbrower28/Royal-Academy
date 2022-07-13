@@ -1,12 +1,14 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Quiz Completed</h1>
-
-<p>Your response has been saved.</p>
-
-<p>
-  Click <a href="{% url 'quizzes:quiz_results' attempt.id %}">here</a> to see
-  your results
-</p>
+<main style="max-width: 600px; margin: 0 auto;">
+  <h1>Quiz Completed</h1>
+  
+  <p>Your response has been saved.</p>
+  
+  <p>
+    Click <a href="{% url 'quizzes:quiz_results' attempt.id %}">here</a> to see
+    your results
+  </p>
+</main>
 
 {% endblock %}
