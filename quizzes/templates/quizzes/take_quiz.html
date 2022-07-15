@@ -1,15 +1,18 @@
+{% extends 'base.html' %} {% block content %}
+<main style="max-width: 600px; margin: 0 auto;">
+
 <h1>Quiz: {{ quiz.name }}</h1>
 <form method="post" action="{% url 'quizzes:submit_quiz_attempt' quiz.id %}">
   {% csrf_token %}
   <ul style="list-style-type: none;">
     {% for question in quiz.question_set.all %}
 
-    <li>
+    <li style="padding-bottom: 10px;">
       <h2>{{ question.title }}</h2>
 
       <ul style="list-style-type: none;">
         {% for option in question.questionoption_set.all %}
-        <li>
+        <li style="margin: 10px;">
           <input
             type="radio"
             id="{{ option.id }}"
@@ -28,3 +31,6 @@
 
   <button type="submit">Finish</button>
 </form>
+
+</main>
+{% endblock %}
