@@ -7,11 +7,11 @@ Join us on our journey to educate the world with code!
 
 ## Our Collaborators:
 
-* Chettra Ly
-* Mathieu Steele
-* Daniel De La Pena Maldonado 
-* Joseph Devincenzi
-* Ryan Brower
+* Chettra Ly - Had to drop the class and could not participate in the project.
+* Mathieu Steele - Created the Quiz part
+* Daniel De La Pena Maldonado - Created the Flashcard part.
+* Joseph Devincenzi - Created the Math Game
+* Ryan Brower - Created the Typing game.
 
 ## Development Environment:
 
@@ -34,8 +34,6 @@ http://localhost:8000
 
 Your changes to the code files will update when
 you refresh the page on your browser.
-
-Have fun! yes! Thanks for this!
 
 ## Further Resources:
 
