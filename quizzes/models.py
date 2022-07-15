@@ -3,6 +3,7 @@ import uuid
 from django.contrib.auth.models import User
 from django.db import models
 
+# This model will store the name of the quiz
 class Quiz(models.Model):
     id = models.UUIDField(primary_key = True,
          default = uuid.uuid4,
@@ -21,7 +22,7 @@ class Quiz(models.Model):
         return self.name
 
 
-
+# This model will store a question that belongs to a quiz
 class Question(models.Model):
     id = models.UUIDField(primary_key = True,
          default = uuid.uuid4,
@@ -35,6 +36,7 @@ class Question(models.Model):
         return "Quiz: " + str(self.quiz) + " Question: " + self.title
 
 
+# This model will store the options for answers that belong to a question
 class QuestionOption(models.Model):
     id = models.UUIDField(primary_key = True,
          default = uuid.uuid4,
@@ -52,6 +54,7 @@ class QuestionOption(models.Model):
         return 'Answer for ' + str(self.question) + ': ' + self.title
 
 
+# This model will store the user's attempt to respond to a quiz
 class QuizAttempt(models.Model):
     id = models.UUIDField(primary_key = True,
          default = uuid.uuid4,
@@ -67,6 +70,7 @@ class QuizAttempt(models.Model):
         return str(self.quiz) + ' completed by ' + str(self.completed_by) + ' at ' + str(self.timestamp)
 
 
+# This model will store the user's response to a question on a quiz as part of an attempt
 class QuestionAttempt(models.Model):
     id = models.UUIDField(primary_key = True,
          default = uuid.uuid4,
