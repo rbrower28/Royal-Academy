@@ -15,8 +15,7 @@ body {
   justify-content: space-between;
 }
 
-header,
-footer {
+.quitBtn {
   margin: 2vw;
 }
 
